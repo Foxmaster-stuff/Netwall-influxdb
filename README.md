@@ -1,6 +1,6 @@
 # Project Title
 
-Graph SNMPv3 values from Clavister Netshield
+Graph SNMPv3 values from Clavister Netwall
 
 ## Description
 
@@ -19,7 +19,7 @@ make graphs in grafana.
 
 ### Installing
 
-* The file NetshieldIP.txt is where the script reads IP,USER,SNMPv3-PW,USER-PW,
+* The file NetwallIP.txt is where the script reads IP,USER,SNMPv3-PW,USER-PW,
 
 Example
 ```
@@ -33,7 +33,7 @@ Example
 * Step-by-step bullets
 Polls the network device every 5 min
 ```
-*/5 * * * *     /usr/local/bin/Netshield/Influx_Netshield.sh > /dev/null 2>&1
+*/5 * * * *     /usr/local/bin/Netwall/Influx_Netwall.sh > /dev/null 2>&1
 ```
 
 ## Help
