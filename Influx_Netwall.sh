@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -x
 
-IPList=/usr/local/bin/NetwallIP.txt    #TextFile containing IP's to poll
+IPList=/usr/local/bin/Netwall/NetwallIP.txt    #TextFile containing IP's to poll
 
 #count rows in iplist
 rows=$(wc -l NetwallIP.txt |awk '{print $1}')
@@ -34,7 +34,7 @@ do
 	nr=${#Ifs_Name_A[@]}
 
 	#Create DB
-	curl -XPOST 'http://localhost:8086/query' --data-urlencode 'q=CREATE DATABASE "db2"'
+	curl -XPOST "http://localhost:8086/query" --data-urlencode "q=CREATE DATABASE \"$DB\""
 	for (( i=0; i<$nr; i++ ))
 		do
 			# Calculate In BW
@@ -55,8 +55,8 @@ do
 				Ifs_Stat_A6=0
 			fi
 			#Post to InfluxDB
-			curl -i -XPOST 'http://localhost:8086/write?db=db2' --data-binary "${Ifs_Name_A[$i]},host=$IP,Direction=In value=$Ifs_Stat_A4"
-			curl -i -XPOST 'http://localhost:8086/write?db=db2' --data-binary "${Ifs_Name_A[$i]},host=$IP,Direction=Out value=$Ifs_Stat_A6"
+			curl -i -XPOST "http://localhost:8086/write?db=$DB" --data-binary "${Ifs_Name_A[$i]},host=$IP,Direction=In value=$Ifs_Stat_A4"
+			curl -i -XPOST "http://localhost:8086/write?db=$DB" --data-binary "${Ifs_Name_A[$i]},host=$IP,Direction=Out value=$Ifs_Stat_A6"
 
 	       done
 
@@ -69,8 +69,8 @@ do
 	nr=${#Rule_Name_A[@]}
 	for (( i=0; i<$nr; i++ ))
 	do
-		#curl -i -XPOST 'http://localhost:8086/write?db=db2' --data-binary "${Rule_Name_A[$i]},host=$IP,Direction=In value=${Rule_Hit_A[$i]}"
-		curl -i -XPOST 'http://localhost:8086/write?db=db2' --data-binary "Rule=${Rule_Name_A[$i]},host=$IP value=${Rule_Hit_A[$i]}"
+		#curl -i -XPOST 'http://localhost:8086/write?db=$DB' --data-binary "${Rule_Name_A[$i]},host=$IP,Direction=In value=${Rule_Hit_A[$i]}"
+		curl -i -XPOST "http://localhost:8086/write?db=$DB" --data-binary "Rule=${Rule_Name_A[$i]},host=$IP value=${Rule_Hit_A[$i]}"
 	done
 
 # Sleep for 3 sec to get a more true CPU value
@@ -86,12 +86,12 @@ Sys_name=$(snmpget -v3 -l authPriv -u $USER -a SHA1 -A $PW -x AES -X $PW2 $IP 1.
 #Uptime_A=($(echo $Uptime | tr -d , ))
 
 # Post to InfluxDB
-curl -i -XPOST 'http://localhost:8086/write?db=db2' --data-binary "Cpu,host=$IP value=$Cpu"
-curl -i -XPOST 'http://localhost:8086/write?db=db2' --data-binary "Flows,host=$IP value=$Flows"
-curl -i -XPOST 'http://localhost:8086/write?db=db2' --data-binary "CpuTemp,host=$IP value=$CpuTemp"
-curl -i -XPOST 'http://localhost:8086/write?db=db2' --data-binary "Mem_used,host=$IP value=$Mem_used"
-curl -i -XPOST 'http://localhost:8086/write?db=db2' --data-binary "Mem_free,host=$IP value=$Mem_free"
-curl -i -XPOST 'http://localhost:8086/write?db=db2' --data-binary "Uptime1,host=$IP value="$Uptime""
-curl -i -XPOST 'http://localhost:8086/write?db=db2' --data-binary "Sys_name,host=$IP value=\"$Sys_name\""
+curl -i -XPOST "http://localhost:8086/write?db=$DB" --data-binary "Cpu,host=$IP value=$Cpu"
+curl -i -XPOST "http://localhost:8086/write?db=$DB" --data-binary "Flows,host=$IP value=$Flows"
+curl -i -XPOST "http://localhost:8086/write?db=$DB" --data-binary "CpuTemp,host=$IP value=$CpuTemp"
+curl -i -XPOST "http://localhost:8086/write?db=$DB" --data-binary "Mem_used,host=$IP value=$Mem_used"
+curl -i -XPOST "http://localhost:8086/write?db=$DB" --data-binary "Mem_free,host=$IP value=$Mem_free"
+curl -i -XPOST "http://localhost:8086/write?db=$DB" --data-binary "Uptime1,host=$IP value="$Uptime""
+curl -i -XPOST "http://localhost:8086/write?db=$DB" --data-binary "Sys_name,host=$IP value=\"$Sys_name\""
 done
 
