@@ -62,7 +62,7 @@ command to run if program contains helper info
 Contributors names and contact info
 
 [Foxmaster](pemi@clavister.com)
-[Count_Oliver]
+[Count_Oliver](olgr@clavister.com)
 
 ## Version History
 * 1.0 Updating Readme
