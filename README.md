@@ -25,12 +25,26 @@ Example
 ```
 192.168.105.3,apa,apa123456789,dt12576!,
 ```
-* Any modifications needed to be made to files/folders
+* Enable Influx and Grafana
+```
+sudo systemctl enable influxdb
+sudo systemctl status influxdb
+sudo systemctl enable grafana-server.service
+sudo systemctl status grafana-server
+```
+* Create the dir for the script
+```
+sudo mkdir /usr/local/bin/Netwall
+sudo vi /usr/local/bin/Netwall/NetwallIP.txt 
+```
+* Make script executable
+```
+sudo chmod +x Influx_Netwall.sh
+```
 
 ### Executing program
 
 * This script uses crontab to execute the script
-* Step-by-step bullets
 Polls the network device every 5 min
 ```
 */5 * * * *     /usr/local/bin/Netwall/Influx_Netwall.sh > /dev/null 2>&1
@@ -47,10 +61,11 @@ command to run if program contains helper info
 
 Contributors names and contact info
 
-[Foxmaster](pemi@clavister.com)  
+[Foxmaster](pemi@clavister.com)
+[Count_Oliver]
 
 ## Version History
-
+* 1.0 Updating Readme
 * 0.2
     * Various bug fixes and optimizations
     * See [commit change]() or See [release history]()
