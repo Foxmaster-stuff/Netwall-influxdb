@@ -13,6 +13,12 @@ make graphs in grafana.
 ### Dependencies
 
 * Setup uses Ubuntu server 20.04
+	* Add Grafana repo
+	```
+	wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+	echo "deb https://packages.grafana.com/enterprise/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+	sudo apt update
+	```
 * Grafana (apt install grafana)
 * InfluxDB (apt install influxdb)
 * Influx-client (apt install influx-client)
