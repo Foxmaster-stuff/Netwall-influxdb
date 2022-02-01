@@ -56,7 +56,7 @@ Polls the network device every 5 min
 */5 * * * *     /usr/local/bin/Netwall/Influx_Netwall.sh > /dev/null 2>&1
 ```
 
-## Help
+## Screen Shots
 * Rule hit counter
 ![ScreenShot](https://user-images.githubusercontent.com/14079393/151988976-0f230712-33f9-44ff-900d-bd10d17939ca.jpg)
 
