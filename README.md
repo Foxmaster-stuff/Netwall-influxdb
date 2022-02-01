@@ -60,6 +60,10 @@ Polls the network device every 5 min
 * Rule hit counter
 ![ScreenShot](https://user-images.githubusercontent.com/14079393/151988976-0f230712-33f9-44ff-900d-bd10d17939ca.jpg)
 
+* System Dash
+![system_dash](https://user-images.githubusercontent.com/14079393/151990072-cbabd9f2-11b8-4927-b96d-7b8be84486f1.jpg)
+
+
 
 Any advise for common problems or issues.
 ```
