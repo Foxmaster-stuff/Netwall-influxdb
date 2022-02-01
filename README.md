@@ -57,7 +57,7 @@ Polls the network device every 5 min
 ```
 
 ## Help
-
+*Rule hit counter
 ![ScreenShot](https://user-images.githubusercontent.com/14079393/151988976-0f230712-33f9-44ff-900d-bd10d17939ca.jpg)
 
 
