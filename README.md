@@ -29,7 +29,7 @@ make graphs in grafana.
 
 Example
 ```
-192.168.105.3,apa,apa123456789,dt12576!,
+192.168.105.3,user,snmp_pw,user_pw,
 ```
 * Enable Influx and Grafana
 ```
